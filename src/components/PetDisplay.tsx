@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import type { PetState } from '@/lib/petTypes';
 import { CareAction } from '@/hooks/usePet';
 import { cn } from '@/lib/utils';
+import { Pencil } from '@phosphor-icons/react';
+import { Button } from '@/components/ui/button';
 
 // Import all Mona GIFs
 import monaDefault from '@/assets/mona-default.gif';
@@ -16,9 +18,10 @@ import monaHeart from '@/assets/mona-heart.gif';
 interface PetDisplayProps {
   pet: PetState;
   isAnimating: string | null;
+  onEditName?: () => void;
 }
 
-const PetDisplay = ({ pet, isAnimating }: PetDisplayProps) => {
+const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
   const [currentGif, setCurrentGif] = useState<string>(monaDefault);
   const [afterAnimationGif, setAfterAnimationGif] = useState<string | null>(null);
 
@@ -75,8 +78,18 @@ const PetDisplay = ({ pet, isAnimating }: PetDisplayProps) => {
           height={120}
         />
       </div>
-      <div className="pixel-text text-xs mt-2 text-primary">
-        {pet.name} - DAY {Math.floor(pet.metrics.age)}
+      <div className="pixel-text text-xs mt-2 text-primary flex items-center justify-center">
+        <span>{pet.name} - DAY {Math.floor(pet.metrics.age)}</span>
+        {onEditName && (
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={onEditName} 
+            className="text-primary h-5 w-5 ml-1 p-0"
+          >
+            <Pencil size={12} />
+          </Button>
+        )}
       </div>
     </div>
   );

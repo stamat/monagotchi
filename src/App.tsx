@@ -58,20 +58,16 @@ function App() {
     <div className="min-h-screen flex items-center justify-center bg-muted p-4">
       <div className="device-frame bg-background shadow-lg p-6 w-full max-w-sm">
         <Card className="border-4 border-primary">
-          <CardHeader className="p-3 bg-primary text-primary-foreground flex flex-row justify-between items-center">
+          <CardHeader className="p-3 bg-primary text-primary-foreground">
             <CardTitle className="pixel-text text-xs">Monagotchi</CardTitle>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => setNameDialogOpen(true)} 
-              className="text-primary-foreground h-7 w-7"
-            >
-              <Pencil size={16} />
-            </Button>
           </CardHeader>
           
           <CardContent className="p-4 space-y-4">
-            <PetDisplay pet={pet} isAnimating={isAnimating} />
+            <PetDisplay 
+              pet={pet} 
+              isAnimating={isAnimating} 
+              onEditName={() => setNameDialogOpen(true)}
+            />
             <StatusMeters metrics={pet.metrics} />
             <ActionButtons
               onFeed={handleFeed}
