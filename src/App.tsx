@@ -69,7 +69,7 @@ function App() {
               isAnimating={isAnimating} 
               onEditName={() => setNameDialogOpen(true)}
             />
-            <div className="flex justify-end w-full mt-1">
+            <div className="flex justify-center w-full mt-1">
               <StatsDialog pet={pet} />
             </div>
             <ActionButtons

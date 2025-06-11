@@ -32,28 +32,28 @@ const ActionButtons = ({
         <Button 
           onClick={onFeed}
           disabled={!!isAnimating || isPetDead}
-          className="ui-text flex flex-col items-center py-4 bg-primary hover:bg-primary/80"
+          className="ui-text flex items-center justify-center gap-1 py-2 bg-primary hover:bg-primary/80"
         >
-          <Popcorn size={24} weight="fill" />
-          <span className="mt-1 text-sm">Feed</span>
+          <Popcorn size={18} weight="fill" />
+          <span className="text-xs">Feed</span>
         </Button>
         
         <Button 
           onClick={onPlay}
           disabled={!!isAnimating || isPetDead}
-          className="ui-text flex flex-col items-center py-4 bg-accent text-accent-foreground hover:bg-accent/80"
+          className="ui-text flex items-center justify-center gap-1 py-2 bg-accent text-accent-foreground hover:bg-accent/80"
         >
-          <Heart size={24} weight="fill" />
-          <span className="mt-1 text-sm">Play</span>
+          <Heart size={18} weight="fill" />
+          <span className="text-xs">Play</span>
         </Button>
         
         <Button 
           onClick={onClean}
           disabled={!!isAnimating || isPetDead}
-          className="ui-text flex flex-col items-center py-4 bg-secondary text-secondary-foreground hover:bg-secondary/80"
+          className="ui-text flex items-center justify-center gap-1 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80"
         >
-          <Bathtub size={24} weight="fill" />
-          <span className="mt-1 text-sm">Clean</span>
+          <Bathtub size={18} weight="fill" />
+          <span className="text-xs">Clean</span>
         </Button>
       </div>
       
@@ -62,10 +62,10 @@ const ActionButtons = ({
           onClick={onReset}
           disabled={!!isAnimating}
           variant="destructive"
-          className="ui-text flex flex-col items-center py-4 animate-pulse"
+          className="ui-text flex items-center justify-center gap-1 py-2 animate-pulse"
         >
-          <ArrowCounterClockwise size={24} />
-          <span className="mt-1 text-sm">Reset Game</span>
+          <ArrowCounterClockwise size={18} />
+          <span className="text-xs">Reset Game</span>
         </Button>
       )}
     </div>
