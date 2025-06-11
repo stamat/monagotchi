@@ -99,6 +99,7 @@
   - Playing animation (mona-code.gif followed by mona-heart.gif)
   - Cleaning animation (mona-heart.gif)
   - Random direction facing (character flips horizontally periodically)
+  - Status emoji indicators (💩, 💧, 🥣, 🪦) for at-a-glance status monitoring
   - Time-away simulation with appropriate notifications
 - **Hierarchy of Movement**: Pet animations are primary, UI feedback secondary
 - **Contextual Appropriateness**: Different animations for different actions and states
@@ -127,7 +128,11 @@
   - Pet dies when hunger reaches 0
   - Reset button only appears when pet is dead
   - Care actions disabled when pet is dead to prevent confusion
-  - Clear visual indicators when pet needs resurrection
+  - Clear visual indicators when pet needs resurrection:
+    - 💩 emoji for low cleanliness (< 35%)
+    - 💧 emoji for low happiness (< 35%)
+    - 🥣 emoji for low hunger (< 35%)
+    - 🪦 emoji when pet is dead
   - Simulates status changes based on time away
   - Shows time since last interaction in footer
 - **Technical Constraints**: Local storage for persistence, accurate time simulation between sessions

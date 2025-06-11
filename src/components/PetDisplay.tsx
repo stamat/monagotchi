@@ -103,6 +103,37 @@ const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
             </p>
           </div>
         )}
+        
+        {/* Status indicators */}
+        <div className="absolute top-2 right-2 flex flex-col gap-1">
+          {/* Cleanliness indicator */}
+          {pet.metrics.cleanliness < 35 && pet.metrics.hunger > 0 && (
+            <div className="text-xl bg-white/70 rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
+              💩
+            </div>
+          )}
+          
+          {/* Happiness indicator */}
+          {pet.metrics.happiness < 35 && pet.metrics.hunger > 0 && (
+            <div className="text-xl bg-white/70 rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
+              💧
+            </div>
+          )}
+          
+          {/* Hunger indicator */}
+          {pet.metrics.hunger < 35 && pet.metrics.hunger > 0 && (
+            <div className="text-xl bg-white/70 rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
+              🥣
+            </div>
+          )}
+          
+          {/* Dead indicator */}
+          {pet.metrics.hunger <= 0 && (
+            <div className="text-xl bg-white/70 rounded-full h-7 w-7 flex items-center justify-center shadow-sm">
+              🪦
+            </div>
+          )}
+        </div>
       </div>
       <div className="pixel-text text-xs mt-2 text-primary flex items-center justify-center">
         <span>{pet.name}</span>
