@@ -115,21 +115,7 @@ function App() {
               pet={pet}
             />
           </CardContent>
-          <CardFooter className="p-2 border-t border-border flex justify-center">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="text-xs text-muted-foreground flex items-center gap-1 px-2 py-1 rounded-full bg-muted/50 cursor-help">
-                    <Clock size={12} />
-                    <span>Last Updated: {lastUpdatedText}</span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent className="ui-text text-xs p-2">
-                  <p>Your pet's status gets updated based on time passed since your last visit.</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </CardFooter>
+
         </Card>
       </div>
       

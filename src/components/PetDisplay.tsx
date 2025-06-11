@@ -105,7 +105,7 @@ const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
         )}
       </div>
       <div className="pixel-text text-xs mt-2 text-primary flex items-center justify-center">
-        <span>{pet.name} - DAY {Math.floor(pet.metrics.age)}</span>
+        <span>{pet.name}</span>
         {onEditName && (
           <Button 
             variant="ghost" 
