@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { PetState, PetMetrics, PetMood, PetStage } from '@/lib/petTypes';
-import { ChartLineUp } from '@phosphor-icons/react';
+import { ChartLineUp, Clock } from '@phosphor-icons/react';
 import StatusMeters from './StatusMeters';
 
 interface StatsDialogProps {
@@ -17,6 +17,18 @@ interface StatsDialogProps {
 }
 
 const StatsDialog = ({ pet }: StatsDialogProps) => {
+  // Format the last updated date and time
+  const formatLastUpdated = (timestamp: number): string => {
+    const date = new Date(timestamp);
+    return date.toLocaleString('en-US', { 
+      month: 'short', 
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    });
+  };
+  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -54,6 +66,13 @@ const StatsDialog = ({ pet }: StatsDialogProps) => {
             <div className="flex justify-between">
               <span className="font-bold">Birthday:</span>
               <span>{getFormattedBirthday(pet.metrics.age)}</span>
+            </div>
+            <div className="flex justify-between items-center mt-2 pt-1 border-t border-border">
+              <span className="font-bold flex items-center gap-1">
+                <Clock size={12} />
+                Last Active:
+              </span>
+              <span>{formatLastUpdated(pet.lastUpdate)}</span>
             </div>
           </div>
         </div>

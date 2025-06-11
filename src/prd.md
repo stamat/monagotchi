@@ -34,10 +34,10 @@
    - Why: Primary interaction methods with the pet
    - Success: Actions properly affect corresponding meters
 
-4. **Time-Based State Changes**
-   - Pet needs gradually change over time
-   - Why: Creates urgency and regular engagement
-   - Success: Meters decrease at appropriate rates
+4. **Pet State Persistence**
+   - Storing pet data in local storage with time-based simulation
+   - Why: Creates continuous pet lifecycle even when user is away
+   - Success: Pet state accurately reflects time passed since last interaction
 
 5. **Pet Evolution System**
    - Pet grows/changes based on care quality
@@ -99,6 +99,7 @@
   - Playing animation (mona-code.gif followed by mona-heart.gif)
   - Cleaning animation (mona-heart.gif)
   - Random direction facing (character flips horizontally periodically)
+  - Time-away simulation with appropriate notifications
 - **Hierarchy of Movement**: Pet animations are primary, UI feedback secondary
 - **Contextual Appropriateness**: Different animations for different actions and states
 
@@ -127,7 +128,9 @@
   - Reset button only appears when pet is dead
   - Care actions disabled when pet is dead to prevent confusion
   - Clear visual indicators when pet needs resurrection
-- **Technical Constraints**: State persistence between sessions, timing mechanism accuracy
+  - Simulates status changes based on time away
+  - Shows time since last interaction in footer
+- **Technical Constraints**: Local storage for persistence, accurate time simulation between sessions
 
 ## Implementation Considerations
 - **Scalability Needs**: Potential for additional pet types, care actions, mini-games

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useKV } from '@github/spark/hooks';
+import { toast } from 'sonner';
 import { 
   PetState, 
   initialPetState, 
@@ -15,6 +16,7 @@ const HUNGER_DECAY = 5; // per time unit
 const HAPPINESS_DECAY = 3; // per time unit
 const CLEANLINESS_DECAY = 2; // per time unit
 const AGE_INCREASE = 0.5; // per time unit
+const LOCAL_STORAGE_KEY = 'monagotchi-pet-state';
 
 // Define pet care actions
 export enum CareAction {
@@ -24,9 +26,22 @@ export enum CareAction {
 }
 
 export const usePet = () => {
-  // Get persistent pet state from KV store or use initial state
+  // Get persistent pet state from KV store as a backup, but prefer localStorage
   const [storedPet, setStoredPet, deleteStoredPet] = useKV<PetState>('tamagotchi-pet', initialPetState);
-  const [pet, setPet] = useState<PetState>(storedPet);
+  const [pet, setPet] = useState<PetState>(() => {
+    // Try to load from localStorage first
+    const savedPet = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (savedPet) {
+      try {
+        return JSON.parse(savedPet);
+      } catch (e) {
+        console.error('Failed to parse pet data from localStorage', e);
+      }
+    }
+    // Fall back to KV store if localStorage fails
+    return storedPet;
+  });
+  
   const [isAnimating, setIsAnimating] = useState<string | null>(null);
 
   // Update metrics based on time passed
@@ -67,6 +82,61 @@ export const usePet = () => {
     };
   };
 
+  // Simulate time passed while app was closed
+  const simulateTimePassed = (savedPet: PetState) => {
+    // No need to simulate if this is a new pet
+    if (savedPet === initialPetState) return savedPet;
+    
+    const now = Date.now();
+    const timeSinceLastUpdate = now - savedPet.lastUpdate;
+    
+    // If less than a minute has passed, don't bother simulating
+    if (timeSinceLastUpdate < TIME_FACTOR) return savedPet;
+    
+    // Calculate time units passed while app was closed
+    const timeUnits = timeSinceLastUpdate / TIME_FACTOR;
+    const timeInHours = Math.floor(timeSinceLastUpdate / (1000 * 60 * 60));
+    const timeInMinutes = Math.floor((timeSinceLastUpdate % (1000 * 60 * 60)) / (1000 * 60));
+    
+    // Show toast notification about time passed
+    if (timeInHours > 0) {
+      toast.info(`Your pet was alone for ${timeInHours}h ${timeInMinutes}m!`);
+    } else {
+      toast.info(`Your pet was alone for ${timeInMinutes} minutes!`);
+    }
+    
+    // Apply decay based on time passed
+    let simulatedHunger = Math.max(0, savedPet.metrics.hunger - HUNGER_DECAY * timeUnits);
+    let simulatedHappiness = Math.max(0, savedPet.metrics.happiness - HAPPINESS_DECAY * timeUnits);
+    let simulatedCleanliness = Math.max(0, savedPet.metrics.cleanliness - CLEANLINESS_DECAY * timeUnits);
+    let simulatedAge = savedPet.metrics.age + AGE_INCREASE * timeUnits;
+    
+    // Cap at minimum values
+    simulatedHunger = Math.max(0, simulatedHunger);
+    simulatedHappiness = Math.max(0, simulatedHappiness);
+    simulatedCleanliness = Math.max(0, simulatedCleanliness);
+    
+    const simulatedMetrics = {
+      hunger: simulatedHunger,
+      happiness: simulatedHappiness,
+      cleanliness: simulatedCleanliness,
+      age: simulatedAge
+    };
+    
+    // Check if pet died while away
+    if (simulatedHunger <= 0 && savedPet.metrics.hunger > 0) {
+      toast.error(`Oh no! ${savedPet.name} has died from hunger while you were away!`);
+    }
+    
+    return {
+      ...savedPet,
+      metrics: simulatedMetrics,
+      mood: calculateMood(simulatedMetrics),
+      stage: calculateStage(simulatedAge),
+      lastUpdate: now
+    };
+  };
+
   // Perform care actions
   const performCareAction = (action: CareAction) => {
     // Show animation for the action
@@ -91,6 +161,7 @@ export const usePet = () => {
         
         // Update mood based on new metrics
         updatedPet.mood = calculateMood(updatedPet.metrics);
+        updatedPet.lastUpdate = Date.now();
         return updatedPet;
       });
       
@@ -112,10 +183,11 @@ export const usePet = () => {
     setPet(currentPet => ({ ...currentPet, name }));
   };
 
-  // Effect to periodically update metrics based on time
+  // Initialize pet with time simulation on mount
   useEffect(() => {
-    // Update metrics immediately on mount
-    setPet(currentPet => updateMetricsOverTime(currentPet));
+    // Simulate time passed since last interaction
+    const simulatedPet = simulateTimePassed(pet);
+    setPet(simulatedPet);
     
     // Set up interval for periodic updates
     const intervalId = setInterval(() => {
@@ -125,10 +197,37 @@ export const usePet = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Effect to persist pet state to KV store whenever it changes
+  // Effect to persist pet state to localStorage and KV store whenever it changes
   useEffect(() => {
+    // Save to localStorage
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(pet));
+    } catch (e) {
+      console.error('Failed to save pet state to localStorage', e);
+    }
+    
+    // Also save to KV store as backup
     setStoredPet(pet);
   }, [pet, setStoredPet]);
+  
+  // Add event listener to save state before page unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({
+          ...pet,
+          lastUpdate: Date.now() // Update the timestamp to the exact moment user leaves
+        }));
+      } catch (e) {
+        console.error('Failed to save pet state before unload', e);
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [pet]);
 
   return {
     pet,
