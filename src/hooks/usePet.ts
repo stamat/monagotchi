@@ -171,9 +171,11 @@ export const usePet = () => {
 
   // Reset pet to initial state
   const resetPet = () => {
+    const now = Date.now();
     const newPet = {
       ...initialPetState,
-      lastUpdate: Date.now()
+      lastUpdate: now,
+      birthday: pet.birthday || now // Preserve the original birthday
     };
     setPet(newPet);
   };

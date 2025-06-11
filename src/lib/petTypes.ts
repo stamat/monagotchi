@@ -30,6 +30,7 @@ export interface PetState {
   mood: PetMood;
   stage: PetStage;
   lastUpdate: number; // timestamp of last update
+  birthday: number; // timestamp of when the pet was created
 }
 
 // Initial pet state
@@ -43,7 +44,8 @@ export const initialPetState: PetState = {
   },
   mood: PetMood.CONTENT,
   stage: PetStage.BABY,
-  lastUpdate: Date.now()
+  lastUpdate: Date.now(),
+  birthday: Date.now()
 };
 
 // Calculate the pet's mood based on its metrics

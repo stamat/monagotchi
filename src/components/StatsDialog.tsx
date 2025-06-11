@@ -65,7 +65,7 @@ const StatsDialog = ({ pet }: StatsDialogProps) => {
             </div>
             <div className="flex justify-between">
               <span className="font-bold">Birthday:</span>
-              <span>{getFormattedBirthday(pet.metrics.age)}</span>
+              <span>{getFormattedBirthday(pet.metrics.age, pet.birthday)}</span>
             </div>
             <div className="flex justify-between items-center mt-2 pt-1 border-t border-border">
               <span className="font-bold flex items-center gap-1">
@@ -104,13 +104,23 @@ const getPetStageDescription = (stage: PetStage): string => {
   }
 };
 
-// Helper function to calculate birthday based on age
-const getFormattedBirthday = (age: number): string => {
-  const today = new Date();
-  const birthDate = new Date(today);
-  birthDate.setDate(today.getDate() - Math.floor(age));
+// Helper function to display birthday from the pet's birthday timestamp
+const getFormattedBirthday = (age: number, birthday?: number): string => {
+  // If we have a birthday timestamp, use it
+  if (birthday) {
+    const birthDate = new Date(birthday);
+    return birthDate.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric'
+    });
+  }
   
-  return birthDate.toLocaleDateString('en-US', { 
+  // Fallback calculation if no birthday is stored
+  const today = new Date();
+  const calculatedBirthDate = new Date(today);
+  calculatedBirthDate.setDate(today.getDate() - Math.floor(age));
+  
+  return calculatedBirthDate.toLocaleDateString('en-US', { 
     month: 'short', 
     day: 'numeric'
   });
