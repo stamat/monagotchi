@@ -44,6 +44,11 @@
    - Why: Provides long-term engagement goal and feedback
    - Success: Different evolution paths based on care patterns
 
+6. **Detailed Stats View**
+   - Modal dialog showing comprehensive pet stats and information
+   - Why: Provides deeper engagement and understanding of pet's status
+   - Success: Users can access additional pet information on demand
+
 ## Design Direction
 
 ### Visual Tone & Identity
@@ -98,11 +103,11 @@
 - **Contextual Appropriateness**: Different animations for different actions and states
 
 ### UI Elements & Component Selection
-- **Component Usage**: Cards for the main display, buttons for actions, progress bars for status
+- **Component Usage**: Cards for the main display, buttons for actions, progress bars for status, dialog for detailed stats
 - **Component Customization**: Rounded corners, pixel-art styling where appropriate
 - **Component States**: Clear hover and active states for all interactive elements
-- **Icon Selection**: Simple, universal icons from Phosphor (food, play, clean)
-- **Component Hierarchy**: Pet display (primary), status bars (secondary), action buttons (tertiary)
+- **Icon Selection**: Simple, universal icons from Phosphor (food, play, clean, stats)
+- **Component Hierarchy**: Pet display (primary), status bars (secondary), action buttons (tertiary), stats button (utility)
 - **Spacing System**: Consistent 4px/8px spacing grid
 - **Mobile Adaptation**: Already designed for small viewport, scales up for larger screens
 

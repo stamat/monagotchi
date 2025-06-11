@@ -10,6 +10,7 @@ import PetDisplay from '@/components/PetDisplay';
 import StatusMeters from '@/components/StatusMeters';
 import ActionButtons from '@/components/ActionButtons';
 import NameDialog from '@/components/NameDialog';
+import StatsDialog from '@/components/StatsDialog';
 
 function App() {
   const { 
@@ -68,6 +69,9 @@ function App() {
               isAnimating={isAnimating} 
               onEditName={() => setNameDialogOpen(true)}
             />
+            <div className="flex justify-end w-full mt-1">
+              <StatsDialog pet={pet} />
+            </div>
             <StatusMeters metrics={pet.metrics} />
             <ActionButtons
               onFeed={handleFeed}
