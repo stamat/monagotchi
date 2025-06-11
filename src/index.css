@@ -43,8 +43,8 @@
   --ring: oklch(0.3 0.08 120);          /* Dark green #355E3B */
 
   /* Border radius */
-  --radius: 0.75rem;
-  --spacing: 0.3rem;
+  --radius: 0.5rem;
+  --spacing: 0.25rem;
 }
 
 @theme {
