@@ -2,9 +2,9 @@ import React from 'react';
 import { Progress } from '@/components/ui/progress';
 import { PetMetrics } from '@/lib/petTypes';
 import { 
-  Bowl, 
-  GameController, 
-  ShowerHead 
+  Popcorn,
+  Bathtub,
+  Heart
 } from '@phosphor-icons/react';
 
 interface StatusMetersProps {
@@ -15,7 +15,7 @@ const StatusMeters = ({ metrics }: StatusMetersProps) => {
   return (
     <div className="w-full space-y-3 p-2">
       <div className="flex items-center space-x-2">
-        <Bowl className="text-primary" size={24} />
+        <Popcorn className="text-primary" size={24} />
         <div className="flex-1">
           <div className="flex justify-between mb-1 text-xs ui-text">
             <span>Hunger</span>
@@ -30,7 +30,7 @@ const StatusMeters = ({ metrics }: StatusMetersProps) => {
       </div>
       
       <div className="flex items-center space-x-2">
-        <GameController className="text-accent" size={24} />
+        <Heart className="text-accent" size={24} />
         <div className="flex-1">
           <div className="flex justify-between mb-1 text-xs ui-text">
             <span>Happiness</span>
@@ -45,7 +45,7 @@ const StatusMeters = ({ metrics }: StatusMetersProps) => {
       </div>
       
       <div className="flex items-center space-x-2">
-        <ShowerHead className="text-secondary" size={24} />
+        <Bathtub className="text-secondary" size={24} />
         <div className="flex-1">
           <div className="flex justify-between mb-1 text-xs ui-text">
             <span>Cleanliness</span>

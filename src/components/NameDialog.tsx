@@ -22,15 +22,15 @@ const NameDialog = ({ open, onClose, currentName }: NameDialogProps) => {
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="pixel-text text-sm">Name Your Pet</DialogTitle>
+          <DialogTitle className="pixel-text text-sm">Name Your Mona</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="flex flex-col space-y-2">
-              <Label htmlFor="pet-name" className="ui-text">Pet Name</Label>
+              <Label htmlFor="pet-name" className="ui-text">Mona Name</Label>
               <Input
                 id="pet-name"
-                placeholder="Enter a name for your pet"
+                placeholder="Enter a name for your mona"
                 className="ui-text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}

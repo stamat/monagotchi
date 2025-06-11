@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { 
-  Bowl, 
-  GameController, 
-  ShowerHead, 
+  Popcorn,
+  Bathtub,
+  Heart,
   ArrowCounterClockwise 
 } from '@phosphor-icons/react';
 
@@ -29,7 +29,7 @@ const ActionButtons = ({
         disabled={!!isAnimating}
         className="ui-text flex flex-col items-center py-6 bg-primary hover:bg-primary/80"
       >
-        <Bowl size={28} weight="fill" />
+        <Popcorn size={28} weight="fill" />
         <span className="mt-1">Feed</span>
       </Button>
       
@@ -38,7 +38,7 @@ const ActionButtons = ({
         disabled={!!isAnimating}
         className="ui-text flex flex-col items-center py-6 bg-accent text-accent-foreground hover:bg-accent/80"
       >
-        <GameController size={28} weight="fill" />
+        <Heart size={28} weight="fill" />
         <span className="mt-1">Play</span>
       </Button>
       
@@ -47,7 +47,7 @@ const ActionButtons = ({
         disabled={!!isAnimating}
         className="ui-text flex flex-col items-center py-6 bg-secondary text-secondary-foreground hover:bg-secondary/80"
       >
-        <ShowerHead size={28} weight="fill" />
+        <Bathtub size={28} weight="fill" />
         <span className="mt-1">Clean</span>
       </Button>
       

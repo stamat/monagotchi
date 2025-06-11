@@ -26,23 +26,24 @@ function App() {
 
   const handleFeed = () => {
     feedPet();
-    toast.success('Yum! Your pet is eating!');
+    toast.success('Yum! Your Mona is eating!');
+    
   };
 
   const handlePlay = () => {
     playWithPet();
-    toast.success('Your pet is having fun playing!');
+    toast.success('Your Mona is having fun playing!');
   };
 
   const handleClean = () => {
     cleanPet();
-    toast.success('Your pet is getting clean!');
+    toast.success('Your Mona is getting clean!');
   };
 
   const handleReset = () => {
     if (window.confirm('Are you sure you want to reset your pet?')) {
       resetPet();
-      toast.info('Your pet has been reset!');
+      toast.info('Your Mona has been reset!');
     }
   };
 
@@ -50,7 +51,7 @@ function App() {
     setNameDialogOpen(false);
     if (name && name !== pet.name) {
       namePet(name);
-      toast.success(`Pet renamed to ${name}!`);
+      toast.success(`Mona renamed to ${name}!`);
     }
   };
 
@@ -59,7 +60,7 @@ function App() {
       <div className="device-frame bg-background shadow-lg p-6 w-full max-w-sm">
         <Card className="border-4 border-primary">
           <CardHeader className="p-3 bg-primary text-primary-foreground flex flex-row justify-between items-center">
-            <CardTitle className="pixel-text text-xs">GitHub Pet</CardTitle>
+            <CardTitle className="pixel-text text-xs">Monagotchi</CardTitle>
             <Button 
               variant="ghost" 
               size="icon" 
