@@ -1,0 +1,183 @@
+// Pet evolution stages
+export enum PetStage {
+  BABY = 'BABY',
+  CHILD = 'CHILD',
+  TEEN = 'TEEN',
+  ADULT = 'ADULT'
+}
+
+// Pet mood states based on care metrics
+export enum PetMood {
+  HAPPY = 'HAPPY',
+  CONTENT = 'CONTENT',
+  NEUTRAL = 'NEUTRAL',
+  UNHAPPY = 'UNHAPPY',
+  SAD = 'SAD'
+}
+
+// Care metrics for the pet
+export interface PetMetrics {
+  hunger: number; // 0-100, 0 is hungry, 100 is full
+  happiness: number; // 0-100, 0 is sad, 100 is happy
+  cleanliness: number; // 0-100, 0 is dirty, 100 is clean
+  age: number; // Age in "pet days"
+}
+
+// Pet state including metrics, mood, and evolution stage
+export interface PetState {
+  name: string;
+  metrics: PetMetrics;
+  mood: PetMood;
+  stage: PetStage;
+  lastUpdate: number; // timestamp of last update
+}
+
+// Initial pet state
+export const initialPetState: PetState = {
+  name: 'Pixel',
+  metrics: {
+    hunger: 70,
+    happiness: 70,
+    cleanliness: 70,
+    age: 0
+  },
+  mood: PetMood.CONTENT,
+  stage: PetStage.BABY,
+  lastUpdate: Date.now()
+};
+
+// Calculate the pet's mood based on its metrics
+export const calculateMood = (metrics: PetMetrics): PetMood => {
+  const average = (metrics.hunger + metrics.happiness + metrics.cleanliness) / 3;
+  
+  if (average >= 80) return PetMood.HAPPY;
+  if (average >= 60) return PetMood.CONTENT;
+  if (average >= 40) return PetMood.NEUTRAL;
+  if (average >= 20) return PetMood.UNHAPPY;
+  return PetMood.SAD;
+};
+
+// Calculate the pet's evolution stage based on age
+export const calculateStage = (age: number): PetStage => {
+  if (age >= 30) return PetStage.ADULT;
+  if (age >= 15) return PetStage.TEEN;
+  if (age >= 5) return PetStage.CHILD;
+  return PetStage.BABY;
+};
+
+// Pet ASCII art representation based on stage and mood
+export const getPetArt = (stage: PetStage, mood: PetMood): string[][] => {
+  // Define pet pixel art for different stages and moods
+  const petArt = {
+    [PetStage.BABY]: {
+      [PetMood.HAPPY]: [
+        '  ●   ●  ',
+        '    ◡    ',
+        '  ●●●●●  '
+      ],
+      [PetMood.CONTENT]: [
+        '  ●   ●  ',
+        '    ―    ',
+        '  ●●●●●  '
+      ],
+      [PetMood.NEUTRAL]: [
+        '  ●   ●  ',
+        '    ―    ',
+        '  ●●●●●  '
+      ],
+      [PetMood.UNHAPPY]: [
+        '  ●   ●  ',
+        '    ⌒    ',
+        '  ●●●●●  '
+      ],
+      [PetMood.SAD]: [
+        '  ●   ●  ',
+        '    ⌒    ',
+        '  ●●●●●  '
+      ]
+    },
+    [PetStage.CHILD]: {
+      [PetMood.HAPPY]: [
+        '  ★   ★  ',
+        '    ◡    ',
+        ' ●●●●●●● '
+      ],
+      [PetMood.CONTENT]: [
+        '  ★   ★  ',
+        '    ―    ',
+        ' ●●●●●●● '
+      ],
+      [PetMood.NEUTRAL]: [
+        '  ★   ★  ',
+        '    ―    ',
+        ' ●●●●●●● '
+      ],
+      [PetMood.UNHAPPY]: [
+        '  ★   ★  ',
+        '    ⌒    ',
+        ' ●●●●●●● '
+      ],
+      [PetMood.SAD]: [
+        '  ★   ★  ',
+        '    ⌒    ',
+        ' ●●●●●●● '
+      ]
+    },
+    [PetStage.TEEN]: {
+      [PetMood.HAPPY]: [
+        ' ⊙    ⊙ ',
+        '    ◡    ',
+        '▰▰▰▰▰▰▰▰'
+      ],
+      [PetMood.CONTENT]: [
+        ' ⊙    ⊙ ',
+        '    ―    ',
+        '▰▰▰▰▰▰▰▰'
+      ],
+      [PetMood.NEUTRAL]: [
+        ' ⊙    ⊙ ',
+        '    ―    ',
+        '▰▰▰▰▰▰▰▰'
+      ],
+      [PetMood.UNHAPPY]: [
+        ' ⊙    ⊙ ',
+        '    ⌒    ',
+        '▰▰▰▰▰▰▰▰'
+      ],
+      [PetMood.SAD]: [
+        ' ⊙    ⊙ ',
+        '    ⌒    ',
+        '▰▰▰▰▰▰▰▰'
+      ]
+    },
+    [PetStage.ADULT]: {
+      [PetMood.HAPPY]: [
+        ' ■    ■ ',
+        '    ◡    ',
+        '◆◆◆◆◆◆◆◆'
+      ],
+      [PetMood.CONTENT]: [
+        ' ■    ■ ',
+        '    ―    ',
+        '◆◆◆◆◆◆◆◆'
+      ],
+      [PetMood.NEUTRAL]: [
+        ' ■    ■ ',
+        '    ―    ',
+        '◆◆◆◆◆◆◆◆'
+      ],
+      [PetMood.UNHAPPY]: [
+        ' ■    ■ ',
+        '    ⌒    ',
+        '◆◆◆◆◆◆◆◆'
+      ],
+      [PetMood.SAD]: [
+        ' ■    ■ ',
+        '    ⌒    ',
+        '◆◆◆◆◆◆◆◆'
+      ]
+    }
+  };
+
+  return petArt[stage][mood];
+};
