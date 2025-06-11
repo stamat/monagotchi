@@ -34,7 +34,7 @@ export interface PetState {
 
 // Initial pet state
 export const initialPetState: PetState = {
-  name: 'Pixel',
+  name: 'Octocat',
   metrics: {
     hunger: 70,
     happiness: 70,
@@ -65,119 +65,11 @@ export const calculateStage = (age: number): PetStage => {
   return PetStage.BABY;
 };
 
+// Import our cat pet sprite
+import { getCatPetArt } from './catPetSprite';
+
 // Pet ASCII art representation based on stage and mood
 export const getPetArt = (stage: PetStage, mood: PetMood): string[][] => {
-  // Define pet pixel art for different stages and moods
-  const petArt = {
-    [PetStage.BABY]: {
-      [PetMood.HAPPY]: [
-        '  ●   ●  ',
-        '    ◡    ',
-        '  ●●●●●  '
-      ],
-      [PetMood.CONTENT]: [
-        '  ●   ●  ',
-        '    ―    ',
-        '  ●●●●●  '
-      ],
-      [PetMood.NEUTRAL]: [
-        '  ●   ●  ',
-        '    ―    ',
-        '  ●●●●●  '
-      ],
-      [PetMood.UNHAPPY]: [
-        '  ●   ●  ',
-        '    ⌒    ',
-        '  ●●●●●  '
-      ],
-      [PetMood.SAD]: [
-        '  ●   ●  ',
-        '    ⌒    ',
-        '  ●●●●●  '
-      ]
-    },
-    [PetStage.CHILD]: {
-      [PetMood.HAPPY]: [
-        '  ★   ★  ',
-        '    ◡    ',
-        ' ●●●●●●● '
-      ],
-      [PetMood.CONTENT]: [
-        '  ★   ★  ',
-        '    ―    ',
-        ' ●●●●●●● '
-      ],
-      [PetMood.NEUTRAL]: [
-        '  ★   ★  ',
-        '    ―    ',
-        ' ●●●●●●● '
-      ],
-      [PetMood.UNHAPPY]: [
-        '  ★   ★  ',
-        '    ⌒    ',
-        ' ●●●●●●● '
-      ],
-      [PetMood.SAD]: [
-        '  ★   ★  ',
-        '    ⌒    ',
-        ' ●●●●●●● '
-      ]
-    },
-    [PetStage.TEEN]: {
-      [PetMood.HAPPY]: [
-        ' ⊙    ⊙ ',
-        '    ◡    ',
-        '▰▰▰▰▰▰▰▰'
-      ],
-      [PetMood.CONTENT]: [
-        ' ⊙    ⊙ ',
-        '    ―    ',
-        '▰▰▰▰▰▰▰▰'
-      ],
-      [PetMood.NEUTRAL]: [
-        ' ⊙    ⊙ ',
-        '    ―    ',
-        '▰▰▰▰▰▰▰▰'
-      ],
-      [PetMood.UNHAPPY]: [
-        ' ⊙    ⊙ ',
-        '    ⌒    ',
-        '▰▰▰▰▰▰▰▰'
-      ],
-      [PetMood.SAD]: [
-        ' ⊙    ⊙ ',
-        '    ⌒    ',
-        '▰▰▰▰▰▰▰▰'
-      ]
-    },
-    [PetStage.ADULT]: {
-      [PetMood.HAPPY]: [
-        ' ■    ■ ',
-        '    ◡    ',
-        '◆◆◆◆◆◆◆◆'
-      ],
-      [PetMood.CONTENT]: [
-        ' ■    ■ ',
-        '    ―    ',
-        '◆◆◆◆◆◆◆◆'
-      ],
-      [PetMood.NEUTRAL]: [
-        ' ■    ■ ',
-        '    ―    ',
-        '◆◆◆◆◆◆◆◆'
-      ],
-      [PetMood.UNHAPPY]: [
-        ' ■    ■ ',
-        '    ⌒    ',
-        '◆◆◆◆◆◆◆◆'
-      ],
-      [PetMood.SAD]: [
-        ' ■    ■ ',
-        '    ⌒    ',
-        '◆◆◆◆◆◆◆◆'
-      ]
-    }
-  };
-
-  return petArt[stage][mood];
+  // Use our cat pet sprite
+  return getCatPetArt(stage, mood);
 };

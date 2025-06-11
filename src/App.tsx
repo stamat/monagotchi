@@ -59,7 +59,7 @@ function App() {
       <div className="device-frame bg-background shadow-lg p-6 w-full max-w-sm">
         <Card className="border-4 border-primary">
           <CardHeader className="p-3 bg-primary text-primary-foreground flex flex-row justify-between items-center">
-            <CardTitle className="pixel-text text-xs">Pixel Pet</CardTitle>
+            <CardTitle className="pixel-text text-xs">GitHub Pet</CardTitle>
             <Button 
               variant="ghost" 
               size="icon" 

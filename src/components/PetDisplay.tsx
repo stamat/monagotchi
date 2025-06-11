@@ -26,10 +26,10 @@ const PetDisplay = ({ pet, isAnimating }: PetDisplayProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative bg-black rounded-md p-6 mb-2">
+      <div className="relative bg-accent/20 rounded-md p-6 mb-2 border-2 border-black">
         <pre 
           className={cn(
-            "pixel-pet text-2xl font-bold text-accent whitespace-pre leading-normal",
+            "pixel-pet text-lg font-bold text-black whitespace-pre leading-none",
             animationClass
           )}
         >

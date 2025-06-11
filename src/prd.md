@@ -49,23 +49,23 @@
 ### Visual Tone & Identity
 - **Emotional Response**: Nostalgia, joy, attachment, responsibility
 - **Design Personality**: Playful, cute, with pixel-art aesthetic honoring original Tamagotchi
-- **Visual Metaphors**: Egg-shaped device, pixelated graphics, simple animations
+- **Visual Metaphors**: Egg-shaped device, pixel cat character with glasses, simple animations
 - **Simplicity Spectrum**: Intentionally minimal interface that mirrors original device limitations while being more accessible
 
 ### Color Strategy
-- **Color Scheme Type**: Custom palette based on classic Tamagotchi colors
-- **Primary Color**: Soft blue (#4361EE) - represents the nurturing, calm feeling of the original device
+- **Color Scheme Type**: Custom palette inspired by the cat character on lime green
+- **Primary Color**: Dark green (#355E3B) - represents the nurturing environment for our cat pet
 - **Secondary Colors**: Pastel pink (#FFC8DD) for warmth and playfulness
 - **Accent Color**: Bright yellow (#FFEA00) for attention and action indicators
-- **Color Psychology**: Blue creates trust, pink adds playfulness, yellow highlights importance
+- **Color Psychology**: Green creates a natural habitat feel, pink adds playfulness, yellow highlights importance
 - **Color Accessibility**: All color combinations meet WCAG AA standards
 - **Foreground/Background Pairings**: 
-  - Background (#F8F9FA) / Foreground (#1E293B)
+  - Background (lime green #c4eb89) / Foreground (#1E293B)
   - Card (#FFFFFF) / Card-foreground (#1E293B)
-  - Primary (#4361EE) / Primary-foreground (#FFFFFF)
+  - Primary (dark green #355E3B) / Primary-foreground (#FFFFFF)
   - Secondary (#FFC8DD) / Secondary-foreground (#1E293B)
   - Accent (#FFEA00) / Accent-foreground (#1E293B)
-  - Muted (#F1F5F9) / Muted-foreground (#64748B)
+  - Muted (light green #ddf5bc) / Muted-foreground (#64748B)
 
 ### Typography System
 - **Font Pairing Strategy**: Single font family with varied weights for simplicity
