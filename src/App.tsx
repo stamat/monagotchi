@@ -27,7 +27,6 @@ function App() {
   const handleFeed = () => {
     feedPet();
     toast.success('Yum! Your Mona is eating!');
-    
   };
 
   const handlePlay = () => {

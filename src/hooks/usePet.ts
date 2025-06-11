@@ -95,7 +95,7 @@ export const usePet = () => {
       });
       
       setIsAnimating(null);
-    }, 1000);
+    }, 2000); // Increased to 2000ms to allow GIFs to play longer
   };
 
   // Reset pet to initial state

@@ -80,6 +80,9 @@
 /* Specific Tamagotchi styling */
 .pixel-pet {
   image-rendering: pixelated;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
 }
 
 .device-frame {

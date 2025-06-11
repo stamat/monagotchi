@@ -20,9 +20,9 @@
 
 ## Essential Features
 1. **Virtual Pet Display**
-   - Animated character that visually changes based on state
+   - Animated character that visually changes based on state using GIF animations
    - Why: Creates emotional connection through visual feedback
-   - Success: Pet visibly responds to user actions
+   - Success: Pet visibly responds to user actions with appropriate animations
 
 2. **Core Need Meters**
    - Hunger, Happiness, and Cleanliness meters
@@ -84,9 +84,17 @@
 - **Content Density**: Low density, focusing on the pet and core interactions
 
 ### Animations
-- **Purposeful Meaning**: Subtle animations for pet states, more pronounced for interactions
+- **Purposeful Meaning**: GIF animations reflect pet's state and activities
+- **Animation States**: 
+  - Default state (mona-default.gif)
+  - Happy state when all stats >75% (mona-dance.gif)
+  - Low stats alert when any stat <35% (mona-notify.gif)
+  - Dead state when hunger reaches 0 (mona-dead.gif)
+  - Eating animation (mona-eating.gif followed by mona-love.gif)
+  - Playing animation (mona-code.gif followed by mona-heart.gif)
+  - Cleaning animation (mona-heart.gif)
 - **Hierarchy of Movement**: Pet animations are primary, UI feedback secondary
-- **Contextual Appropriateness**: Playful bounces for positive actions, slower movements for negative states
+- **Contextual Appropriateness**: Different animations for different actions and states
 
 ### UI Elements & Component Selection
 - **Component Usage**: Cards for the main display, buttons for actions, progress bars for status
