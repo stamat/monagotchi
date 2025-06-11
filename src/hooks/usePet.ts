@@ -162,6 +162,15 @@ export const usePet = () => {
         // Update mood based on new metrics
         updatedPet.mood = calculateMood(updatedPet.metrics);
         updatedPet.lastUpdate = Date.now();
+        
+        // Save to localStorage immediately after action
+        try {
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedPet));
+          console.log(`Pet state saved after ${action} action`);
+        } catch (e) {
+          console.error('Failed to save pet state to localStorage', e);
+        }
+        
         return updatedPet;
       });
       
@@ -178,11 +187,31 @@ export const usePet = () => {
       birthday: pet.birthday || now // Preserve the original birthday
     };
     setPet(newPet);
+    
+    // Save to localStorage immediately
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newPet));
+      console.log('Pet state saved after reset');
+    } catch (e) {
+      console.error('Failed to save pet state to localStorage', e);
+    }
   };
 
   // Set a custom name for the pet
   const namePet = (name: string) => {
-    setPet(currentPet => ({ ...currentPet, name }));
+    setPet(currentPet => {
+      const updatedPet = { ...currentPet, name };
+      
+      // Save to localStorage immediately
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedPet));
+        console.log('Pet state saved after name change');
+      } catch (e) {
+        console.error('Failed to save pet state to localStorage', e);
+      }
+      
+      return updatedPet;
+    });
   };
 
   // Initialize pet with time simulation on mount
@@ -191,9 +220,23 @@ export const usePet = () => {
     const simulatedPet = simulateTimePassed(pet);
     setPet(simulatedPet);
     
-    // Set up interval for periodic updates
+  // Set up interval for periodic updates
     const intervalId = setInterval(() => {
-      setPet(currentPet => updateMetricsOverTime(currentPet));
+      setPet(currentPet => {
+        const updatedPet = updateMetricsOverTime(currentPet);
+        
+        // If metrics changed, save to localStorage immediately
+        if (updatedPet !== currentPet) {
+          try {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedPet));
+            console.log('Pet state saved after automatic update');
+          } catch (e) {
+            console.error('Failed to save pet state to localStorage', e);
+          }
+        }
+        
+        return updatedPet;
+      });
     }, TIME_FACTOR / 10); // Check more frequently than decay occurs
     
     return () => clearInterval(intervalId);
