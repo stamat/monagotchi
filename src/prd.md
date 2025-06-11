@@ -93,6 +93,7 @@
   - Eating animation (mona-eating.gif followed by mona-love.gif)
   - Playing animation (mona-code.gif followed by mona-heart.gif)
   - Cleaning animation (mona-heart.gif)
+  - Random direction facing (character flips horizontally periodically)
 - **Hierarchy of Movement**: Pet animations are primary, UI feedback secondary
 - **Contextual Appropriateness**: Different animations for different actions and states
 

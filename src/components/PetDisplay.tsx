@@ -24,6 +24,21 @@ interface PetDisplayProps {
 const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
   const [currentGif, setCurrentGif] = useState<string>(monaDefault);
   const [afterAnimationGif, setAfterAnimationGif] = useState<string | null>(null);
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+
+  // Randomly change direction periodically
+  useEffect(() => {
+    const directionChangeInterval = Math.floor(Math.random() * 15000) + 5000; // Random interval between 5-20 seconds
+    
+    const directionTimer = setInterval(() => {
+      // 50% chance to flip direction
+      if (Math.random() > 0.5) {
+        setIsFlipped(prev => !prev);
+      }
+    }, directionChangeInterval);
+    
+    return () => clearInterval(directionTimer);
+  }, []);
 
   useEffect(() => {
     const { metrics } = pet;
@@ -73,7 +88,10 @@ const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
         <img 
           src={currentGif}
           alt={`${pet.name} state`}
-          className="pixel-pet max-w-full h-auto"
+          className={cn(
+            "pixel-pet max-w-full h-auto transition-transform duration-300",
+            isFlipped && "scale-x-[-1]"
+          )}
           width={120}
           height={120}
         />
