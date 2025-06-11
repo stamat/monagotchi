@@ -79,6 +79,7 @@ function App() {
               onClean={handleClean}
               onReset={handleReset}
               isAnimating={isAnimating}
+              pet={pet}
             />
           </CardContent>
         </Card>

@@ -6,6 +6,7 @@ import {
   Heart,
   ArrowCounterClockwise 
 } from '@phosphor-icons/react';
+import type { PetState } from '@/lib/petTypes';
 
 interface ActionButtonsProps {
   onFeed: () => void;
@@ -13,6 +14,7 @@ interface ActionButtonsProps {
   onClean: () => void;
   onReset: () => void;
   isAnimating: string | null;
+  pet: PetState;
 }
 
 const ActionButtons = ({ 
@@ -20,14 +22,16 @@ const ActionButtons = ({
   onPlay, 
   onClean, 
   onReset, 
-  isAnimating 
+  isAnimating,
+  pet 
 }: ActionButtonsProps) => {
+  const isPetDead = pet.metrics.hunger <= 0;
   return (
     <div className="flex flex-col gap-2 w-full p-2">
       <div className="grid grid-cols-3 gap-2 w-full">
         <Button 
           onClick={onFeed}
-          disabled={!!isAnimating}
+          disabled={!!isAnimating || isPetDead}
           className="ui-text flex flex-col items-center py-4 bg-primary hover:bg-primary/80"
         >
           <Popcorn size={24} weight="fill" />
@@ -36,7 +40,7 @@ const ActionButtons = ({
         
         <Button 
           onClick={onPlay}
-          disabled={!!isAnimating}
+          disabled={!!isAnimating || isPetDead}
           className="ui-text flex flex-col items-center py-4 bg-accent text-accent-foreground hover:bg-accent/80"
         >
           <Heart size={24} weight="fill" />
@@ -45,7 +49,7 @@ const ActionButtons = ({
         
         <Button 
           onClick={onClean}
-          disabled={!!isAnimating}
+          disabled={!!isAnimating || isPetDead}
           className="ui-text flex flex-col items-center py-4 bg-secondary text-secondary-foreground hover:bg-secondary/80"
         >
           <Bathtub size={24} weight="fill" />
@@ -53,15 +57,17 @@ const ActionButtons = ({
         </Button>
       </div>
       
-      <Button 
-        onClick={onReset}
-        disabled={!!isAnimating}
-        variant="outline"
-        className="ui-text flex flex-col items-center py-4"
-      >
-        <ArrowCounterClockwise size={24} />
-        <span className="mt-1 text-sm">Reset</span>
-      </Button>
+      {isPetDead && (
+        <Button 
+          onClick={onReset}
+          disabled={!!isAnimating}
+          variant="destructive"
+          className="ui-text flex flex-col items-center py-4 animate-pulse"
+        >
+          <ArrowCounterClockwise size={24} />
+          <span className="mt-1 text-sm">Reset Game</span>
+        </Button>
+      )}
     </div>
   );
 };

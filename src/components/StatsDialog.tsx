@@ -23,6 +23,7 @@ const StatsDialog = ({ pet }: StatsDialogProps) => {
         <Button 
           variant="outline" 
           className="ui-text flex items-center gap-2 bg-muted border-primary"
+          disabled={pet.metrics.hunger <= 0}
         >
           <ChartLineUp size={20} weight="fill" />
           <span>Stats</span>

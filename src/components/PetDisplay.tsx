@@ -95,6 +95,14 @@ const PetDisplay = ({ pet, isAnimating, onEditName }: PetDisplayProps) => {
           width={120}
           height={120}
         />
+        {pet.metrics.hunger <= 0 && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <p className="pixel-text text-destructive text-center p-2">
+              {pet.name} has died!<br/>
+              Please reset
+            </p>
+          </div>
+        )}
       </div>
       <div className="pixel-text text-xs mt-2 text-primary flex items-center justify-center">
         <span>{pet.name} - DAY {Math.floor(pet.metrics.age)}</span>

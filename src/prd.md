@@ -122,7 +122,11 @@
 
 ## Edge Cases & Problem Scenarios
 - **Potential Obstacles**: Users forgetting to care for pet, excessive interaction
-- **Edge Case Handling**: Pet never dies but enters "neglected" state, can be revived
+- **Edge Case Handling**: 
+  - Pet dies when hunger reaches 0
+  - Reset button only appears when pet is dead
+  - Care actions disabled when pet is dead to prevent confusion
+  - Clear visual indicators when pet needs resurrection
 - **Technical Constraints**: State persistence between sessions, timing mechanism accuracy
 
 ## Implementation Considerations
