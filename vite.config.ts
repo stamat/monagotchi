@@ -29,6 +29,7 @@ export default defineConfig({
     tagSourcePlugin() as PluginOption, 
     designerHost() as PluginOption,
   ],
+  base: process.env.GITHUB_PAGES === 'true' ? `/${process.env.GITHUB_REPOSITORY?.split('/')[1] || 'spark-template'}/` : '/',
   build: {
     outDir: process.env.OUTPUT_DIR || 'dist'
   },

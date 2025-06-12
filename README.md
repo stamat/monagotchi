@@ -1,22 +1,51 @@
-# ✨ Welcome to Your Spark Template!
-You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
+# ✨ Welcome to Monagotchi!
+You've just launched your Monagotchi - a Tamagotchi-inspired virtual pet experience featuring GitHub's Mona mascot!
 
-This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
+This project is built as a GitHub Spark application and can be deployed to GitHub Pages for easy sharing.
 
 🚀 What's Inside?
-- A clean, minimal Spark environment
-- Pre-configured for local development
-- Ready to scale with your ideas
-  
-🧠 What Can You Do?
+- A nostalgic virtual pet experience
+- Animated Mona character with different states
+- Stats tracking for Hunger, Happiness, and Cleanliness
+- Local storage persistence to keep your pet alive between sessions
 
-Right now, this is just a starting point — the perfect place to begin building and testing your Spark applications.
+## 🚀 Deploying to GitHub Pages
 
-🧹 Just Exploring?
-No problem! If you were just checking things out and don’t need to keep this code:
+This project is configured to deploy to GitHub Pages in two ways:
 
-- Simply delete your Spark.
-- Everything will be cleaned up — no traces left behind.
+### Automatic Deployment
+
+The project includes a GitHub Action that automatically deploys to GitHub Pages when you push to the main branch. To set it up:
+
+1. Make sure your repository has GitHub Pages enabled in Settings > Pages
+2. Select "GitHub Actions" as the source
+3. Push changes to the main branch to trigger deployment
+
+### Manual Deployment
+
+You can also deploy manually using the included npm script:
+
+```bash
+# Install dependencies
+npm install
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+This will build the project and push it to the gh-pages branch of your repository.
+
+## 🧹 Local Development
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
 
 📄 License For Spark Template Resources 
 
